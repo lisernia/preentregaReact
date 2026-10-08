@@ -1,0 +1,21 @@
+﻿:root {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #393d2c;
+  background: #fbf7ef;
+  line-height: 1.6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .5; }
+a { color: #923d24; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 3px solid #b95530; outline-offset: 4px; }
+section[id] { scroll-margin-top: 24px; }
+::selection { background: #e6c39c; color: #303b27; }
+

@@ -1,0 +1,7 @@
+﻿.card { background:white; padding:28px 18px; border:1px solid #d3e5db; border-radius:20px; text-align:center; box-shadow:0 6px 20px #173f3c08; }
+.avatar { width:88px; height:88px; object-fit:cover; border-radius:50%; border:4px solid #e5f1ed; margin-bottom:14px; background:#e5f1ed; }
+.card h3 { font-size:1.1rem; margin-bottom:8px; }
+.puesto { display:inline-block; color:#146b61; background:#edf6f1; border-radius:30px; padding:4px 12px; font-size:.8rem; font-weight:600; margin-bottom:16px; }
+.email { display:block; font-size:.85rem; overflow-wrap:anywhere; text-decoration:none; }
+.email:hover { text-decoration:underline; }
+.descripcion { color:#686858; font-size:.9rem; line-height:1.6; margin-bottom:16px; }

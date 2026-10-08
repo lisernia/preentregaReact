@@ -1,0 +1,34 @@
+﻿[
+    {
+        "id":  1,
+        "nombre":  "Valentina Fernández",
+        "email":  "vfernandez@gmail.com",
+        "puesto":  "Jefa de cocina",
+        "foto":  "https://www.loremfaces.net/256/id/2.jpg",
+        "descripcion":  "Organiza el menú y coordina la preparación de cada plato con el sabor de la comida casera."
+    },
+    {
+        "id":  2,
+        "nombre":  "Martín Bianchi",
+        "email":  "mbianchi@gmail.com",
+        "puesto":  "Cocinero",
+        "foto":  "https://www.loremfaces.net/256/id/1.jpg",
+        "descripcion":  "Prepara nuestros platos salados y cuida cada detalle para que disfrutes de una comida rica y abundante."
+    },
+    {
+        "id":  3,
+        "nombre":  "Sofía Martínez",
+        "email":  "smartinez@gmail.com",
+        "puesto":  "Pastelera",
+        "foto":  "https://www.loremfaces.net/256/id/4.jpg",
+        "descripcion":  "Prepara postres y dulces caseros para darle un cierre especial a cada comida."
+    },
+    {
+        "id":  4,
+        "nombre":  "Lucas González",
+        "email":  "lgonzalez@gmail.com",
+        "puesto":  "Ayudante de cocina",
+        "foto":  "https://www.loremfaces.net/256/id/5.jpg",
+        "descripcion":  "Prepara los ingredientes y acompaña al equipo en la elaboración y presentación de cada pedido."
+    }
+]
