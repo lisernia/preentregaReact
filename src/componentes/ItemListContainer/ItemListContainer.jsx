@@ -3,6 +3,9 @@ import { ItemList } from "../ItemList/ItemList";
 import styles from "./ItemListContainer.module.css";
 import { useEffect, useState } from 'react';
 
+import { db } from "../../fileStore/config";
+import { collection, getDocs } from 'firebase/firestore';
+
 
 export function ItemListContainer({ json, Mensaje }) {
     const [productos, setProductos] = useState([]);
@@ -10,16 +13,16 @@ export function ItemListContainer({ json, Mensaje }) {
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
-        fetch(json)
-            .then((respuesta) => {
-                if (!respuesta.ok) {
-                    throw new Error('No se pudo cargar la información de los productos');
-                }
-                return respuesta.json();
-            })
-            .then((datos) => {
-                setProductos(datos);
-            })
+        const productosDB = collection(db, "productos");
+
+        getDocs(productosDB).then((resp) => {
+            setProductos(
+                resp.docs.map((doc) => {
+                    return { ...doc.data(), id: doc.id }
+                })
+            );
+        })
+
             .catch((error) => {
                 setError(error.message);
             })
@@ -33,7 +36,7 @@ export function ItemListContainer({ json, Mensaje }) {
     if (error) { return <p>Error: {error}</p>; }
     return (
         <div>
-           
+
             <div>
                 <ItemList productos={productos} mensaje={Mensaje} />
             </div>

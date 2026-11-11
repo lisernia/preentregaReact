@@ -1,10 +1,15 @@
+import styles from "./FormularioProducto.module.css";
 
-function FormularioProducto( { datosForm, manejarChange, manejarEnvio }) {
+function FormularioProducto( { datosForm, manejarChange, manejarEnvio , manejarCambioImagen}) {
 
     return (
 
-        <form onSubmit={manejarEnvio}>
-            <h3> Agregar nuevo producto</h3>
+        <form className={styles.formulario} onSubmit={manejarEnvio}>
+            <div className={styles.encabezado}>
+                <p className={styles.etiqueta}>LA COCINA DE CASA</p>
+                <h1>Agregar nuevo producto</h1>
+                <p>Sumá una nueva propuesta a nuestro menú casero.</p>
+            </div>
             <div>
 
                 <label htmlFor="nombre"> Nombre del producto</label>
@@ -16,6 +21,7 @@ function FormularioProducto( { datosForm, manejarChange, manejarEnvio }) {
                     onChange={manejarChange}
                 ></input>
             </div>
+            <div className={styles.fila}>
             <div>
                 <label htmlFor="precio">Precio</label>
                 <input type="number"
@@ -39,18 +45,19 @@ function FormularioProducto( { datosForm, manejarChange, manejarEnvio }) {
 
             </div>
 
-            <div>
-                <label htmlFor="imagen">Imagen</label>
+            </div>
+            <div className={styles.archivo}>
+                <label htmlFor="imagen">Foto del producto</label>
                 <input type="file"
                     id="imagen"
                     name="imagen"
-                    onChange={manejarChange}
+                    onChange={manejarCambioImagen}
 
                 ></input>
 
             </div>
 
-            <button type="submit">Guardar Producto</button>
+            <button className={styles.boton} type="submit">Guardar producto <span aria-hidden="true">→</span></button>
 
         </form>
 

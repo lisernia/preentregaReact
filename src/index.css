@@ -1,7 +1,17 @@
 ﻿:root {
+  --fondo: #fffaf5;
+  --superficie: #ffffff;
+  --fondo-suave: #f6eaf0;
+  --primario: #74344f;
+  --primario-hover: #542339;
+  --acento: #b75c7c;
+  --rosa: #efd1dc;
+  --texto: #352832;
+  --texto-suave: #70616a;
+  --borde: #e9d6df;
   font-family: 'Segoe UI', Arial, sans-serif;
-  color: #393d2c;
-  background: #fbf7ef;
+  color: var(--texto);
+  background: var(--fondo);
   line-height: 1.6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,9 +23,9 @@ h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; }
 button, input { font: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .5; }
-a { color: #923d24; }
+a { color: var(--primario); }
 img { display: block; max-width: 100%; }
-:focus-visible { outline: 3px solid #b95530; outline-offset: 4px; }
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 4px; }
 section[id] { scroll-margin-top: 24px; }
-::selection { background: #e6c39c; color: #303b27; }
+::selection { background: var(--rosa); color: var(--texto); }
 

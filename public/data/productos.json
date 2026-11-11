@@ -1,23 +1,26 @@
 [
-       {
-              "id": "1234",
-              "nombre": "Pizza Margarita",
-              "precio": 12000,
-              "stock": 15,
-              "imagen": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002"
-       },
-       {
-              "id": "2344",
-              "nombre": "Hamburguesa Completa",
-              "precio": 9500,
-              "stock": 25,
-              "imagen": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-       },
-       {
-              "id": "2545",
-              "nombre": "Ensalada Vegetariana",
-              "precio": 7500,
-              "stock": 50,
-              "imagen": "https://images.unsplash.com/photo-1540420773420-3366772f4999"
-       }
+  {
+    "id": "1234",
+    "nombre": "Pizza Margarita",
+    "precio": 12000,
+    "stock": 15,
+    "imagen": "/images/pizza.jpg",
+    "detalles": "Pizza con salsa de tomate, mozzarella y albahaca fresca."
+  },
+  {
+    "id": "2344",
+    "nombre": "Hamburguesa Completa",
+    "precio": 9500,
+    "stock": 25,
+    "imagen": "/images/hamburguesa.jpg",
+    "detalles": "Hamburguesa con queso, lechuga, tomate y huevo en pan casero."
+  },
+  {
+    "id": "2545",
+    "nombre": "Ensalada Vegetariana",
+    "precio": 7500,
+    "stock": 50,
+    "imagen": "/images/ensalada.jpg",
+    "detalles": "Ensalada fresca con hojas verdes, tomate, zanahoria y aderezo de oliva."
+  }
 ]

@@ -1,13 +1,14 @@
 // En /components/Layout/Layout.jsx
 import Header from '../Header/Header';
 import Footer from '../componentes/Footer/Footer';
-// Todo lo que pongamos dentro de <Layout> en App.jsx será el "children".
-export function Layout({ children }) {
+import { Outlet } from 'react-router-dom';
+
+export function Layout() {
     return (
         <div>
             <Header />
             <main>
-                {children}
+                <Outlet />
             </main>
             <Footer />
         </div>);
