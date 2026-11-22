@@ -9,7 +9,7 @@ const moneda = new Intl.NumberFormat('es-AR', {
 
 const Cart = () => {
 
-    const { cart, clearCart, removeFromCart, getCartTotal, getCartQuantity } = useCart();
+    const { cart, changeQuantity, clearCart, removeFromCart, getCartTotal, getCartQuantity } = useCart();
 
     if (cart.length === 0) {
         return (
@@ -42,7 +42,11 @@ const Cart = () => {
                             <div className={styles.datos}>
                                 <h2><Link to={`/productos/${producto.id}`}>{producto.nombre}</Link></h2>
                                 <p className={styles.suave}>{moneda.format(producto.precio)} por unidad</p>
-                                <span className={styles.cantidad}>Cantidad: {producto.quantity}</span>
+                                <div className={styles.cantidad} role="group" aria-label={`Cantidad de ${producto.nombre}`}>
+                                    <button type="button" onClick={() => changeQuantity(producto.id, -1)} disabled={producto.quantity <= 1} aria-label={`Quitar una unidad de ${producto.nombre}`}>−</button>
+                                    <span aria-live="polite">{producto.quantity}</span>
+                                    <button type="button" onClick={() => changeQuantity(producto.id, 1)} disabled={producto.quantity >= producto.stock} aria-label={`Sumar una unidad de ${producto.nombre}`}>+</button>
+                                </div>
                             </div>
                             <div className={styles.acciones}>
                                 <p className={styles.subtotal}>{moneda.format(producto.precio * producto.quantity)}</p>

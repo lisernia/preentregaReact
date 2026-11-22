@@ -13,7 +13,9 @@
 .datos h2 a { color: var(--texto); text-decoration: none; }
 .datos h2 a:hover { color: var(--primario); text-decoration: underline; }
 .suave { font-size: .85rem; }
-.cantidad { display: inline-block; margin-top: 10px; padding: 4px 12px; border-radius: 999px; background: var(--fondo-suave); color: var(--primario); font-size: .8rem; font-weight: 600; }
+.cantidad { display: inline-flex; align-items: center; gap: 12px; margin-top: 10px; padding: 4px; border-radius: 999px; background: var(--fondo-suave); color: var(--primario); font-size: .9rem; font-weight: 600; }
+.cantidad button { width: 32px; height: 32px; border: 0; border-radius: 50%; background: var(--superficie); color: var(--primario); font-size: 1.1rem; }
+.cantidad button:disabled { opacity: .4; cursor: not-allowed; }
 .acciones { display: grid; justify-items: end; gap: 14px; }
 .subtotal { font-weight: 700; color: var(--primario); font-size: 1.15rem; white-space: nowrap; }
 .eliminar { border: 0; background: transparent; color: var(--texto-suave); padding: 8px; text-decoration: underline; text-underline-offset: 3px; font-size: .85rem; }

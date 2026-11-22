@@ -24,17 +24,21 @@ export const CartProvider = ({ children }) => {
 
 
     const addToCart = (product, quantity) => {
-        const itemInCart = cart.find(item => item.id === product.id);
-        if (itemInCart) {
-            const updatedCart = cart.map(item =>
-                item.id === product.id
-                    ? { ...item, quantity: item.quantity + quantity }
-                    : item
-            );
-            setCart(updatedCart);
-        } else {
-            setCart(prevCart => [...prevCart, { ...product, quantity }]);
-        }
+        setCart(prevCart => {
+            const itemInCart = prevCart.find(item => item.id === product.id);
+            if (itemInCart) {
+                return prevCart.map(item => item.id === product.id
+                    ? { ...item, quantity: Math.min(item.quantity + quantity, item.stock) }
+                    : item);
+            }
+            return [...prevCart, { ...product, quantity: Math.min(quantity, product.stock) }];
+        });
+    };
+
+    const changeQuantity = (id, change) => {
+        setCart(prevCart => prevCart.map(item => item.id === id
+            ? { ...item, quantity: Math.max(1, Math.min(item.quantity + change, item.stock)) }
+            : item));
     };
 
     const clearCart = () => setCart([]);
@@ -53,7 +57,7 @@ export const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, clearCart, removeFromCart, getCartQuantity, getCartTotal }}>
+        <CartContext.Provider value={{ cart, addToCart, changeQuantity, clearCart, removeFromCart, getCartQuantity, getCartTotal }}>
             {children}
         </CartContext.Provider>
     );
