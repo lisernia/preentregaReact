@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styles from './ItemDetalle.module.css';
+import { readProducto } from '../../services/productosServices';
 
 const moneda = new Intl.NumberFormat('es-AR', {
     style: 'currency', currency: 'ARS', maximumFractionDigits: 0,
@@ -12,22 +13,19 @@ function ItemDetalle() {
     const [imagenFallida, setImagenFallida] = useState(null);
 
     useEffect(() => {
-        const controller = new AbortController();
+        let activo = true;
 
         async function cargarProducto() {
             try {
-                const respuesta = await fetch('/data/productos.json', { signal: controller.signal });
-                if (!respuesta.ok) throw new Error('No se pudo cargar el producto.');
-                const productos = await respuesta.json();
-                const producto = productos.find((item) => String(item.id) === id);
-                if (!controller.signal.aborted) setResultado({ id, producto });
+                const producto = await readProducto(id);
+                if (activo) setResultado({ id, producto });
             } catch (error) {
-                if (!controller.signal.aborted) setResultado({ id, error: error.message });
+                if (activo) setResultado({ id, error: error.message });
             }
         }
 
         cargarProducto();
-        return () => controller.abort();
+        return () => { activo = false; };
     }, [id]);
 
     if (!resultado || resultado.id !== id) return <p role="status">Cargando producto...</p>;

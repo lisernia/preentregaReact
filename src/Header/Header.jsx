@@ -17,7 +17,7 @@ function Header() {
                     <li><Link to="/">Inicio</Link></li>
                     <li><Link to="/productos">Nuestra comida</Link></li>
                     <li><Link to="/nosotros">Nosotros</Link></li>
-                    <li><Link to="/alta">Alta de producto  </Link></li>
+                    <li><Link to="/gestion">Gestión de productos</Link></li>
                     <li>
                         <Link to="/carrito" className={styles.carrito} aria-label={`Ver carrito: ${totalItems} productos`} title="Ver carrito">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

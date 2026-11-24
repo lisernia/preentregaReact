@@ -5,7 +5,7 @@ import { useCart } from '../../context/CartContext';
 
 const moneda = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 });
 
-export function Item({ id, nombre, precio, stock, imagen }) {
+export function Item({ id, nombre, precio, stock, imagen, children }) {
   const [cantidad, setCantidad] = useState(0);
   const [esFavorito, setEsFavorito] = useState(() => {
     try {
@@ -64,6 +64,7 @@ export function Item({ id, nombre, precio, stock, imagen }) {
 
           <button type="button" className={styles.agregar} disabled={cantidad === 0 || cantidad > stock} onClick={handleAddToCart}>Agregar al carrito</button>
         </div>
+        {children}
       </div>
     </article>
   );

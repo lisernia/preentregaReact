@@ -1,0 +1,23 @@
+.section {
+    width: 100%;
+}
+
+.producto { display: flex; flex-direction: column; }
+.producto > article { flex: 1; }
+.acciones { display: flex; gap: 10px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--borde); }
+.acciones button { flex: 1; min-width: 0; min-height: 44px; padding: 10px 14px; border: 1px solid var(--primario); border-radius: 999px; background: var(--fondo-suave); color: var(--primario); font-weight: 600; cursor: pointer; }
+.acciones button:hover:not(:disabled) { background: var(--rosa); }
+.acciones .eliminar { color: #a52d3c; border-color: #dcaab0; background: #fff7f7; }
+.acciones .eliminar:hover:not(:disabled) { background: #ffe7e9; }
+.acciones button:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+.acciones button:disabled { opacity: .6; cursor: wait; }
+.formulario { display: grid; gap: 10px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--borde); }
+.formulario .acciones { margin-top: 0; padding-top: 0; border-top: 0; }
+.formulario label { display: grid; gap: 4px; }
+.formulario input { width: 100%; padding: 9px; border: 1px solid var(--borde); border-radius: 8px; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+    gap: 24px;
+}

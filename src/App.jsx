@@ -6,6 +6,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import { EquipoContainer } from './componentes/Equipo/EquipoContainer/EquipoContainer';
 import ItemDetalle from './componentes/ItemDetalle/ItemDetalle';
 import Cart from './componentes/Cart/Cart';
+import Gestion from './componentes/Gestion/Gestion';
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
         <Route path="/nosotros" element={<EquipoContainer
 
           Mensaje={"Nuestro Equipo"} />} />
-        <Route path="/alta" element={<FormularioContainer />} />
+        <Route path="/gestion" element={<Gestion/>} />
 
         <Route path="/productos/:id" element={<ItemDetalle />} />
 

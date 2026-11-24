@@ -2,19 +2,20 @@ import { useState } from "react";
 import FormularioProducto from "../FormularioProducto/FormularioProducto";
 
 
-function FormularioContainer() {
+function FormularioContainer({ onProducto, productoInicial, onCancelar }) {
 
     const [datosForm, setDatosForm] = useState(
         {
-            id: '',
-            nombre: '',
-            precio: '',
-            stock: '',
-            imagen: ''
+            id: productoInicial?.id ?? '',
+            nombre: productoInicial?.nombre ?? '',
+            precio: productoInicial?.precio ?? '',
+            stock: productoInicial?.stock ?? '',
+            imagen: productoInicial?.imagen ?? ''
         });
 
     // 1. Nuevo estado para el archivo de imagen
     const [imagenFile, setImagenFile] = useState(null);
+    const [enviando, setEnviando] = useState(false);
 
 
     const manejarChange = (e) => {
@@ -29,41 +30,41 @@ function FormularioContainer() {
 
     const manejarEnvio = async (evento) => {
         evento.preventDefault();
+        const formulario = evento.currentTarget;
         // Validamos que el usuario haya seleccionado una imagen
-        if (!imagenFile) {
+        if (!imagenFile && !productoInicial) {
             alert("Por favor, selecciona una imagen para el producto.");
             return;
         }
         // --- Lógica para subir la imagen a Imgbb ---
-        const apiKey = import.meta.env.VITE_API_KEY;
-        const formData = new FormData();
-        formData.append('image', imagenFile);
+        setEnviando(true);
         try {
-            console.log("Subiendo imagen a Imgbb...");
-            const respuestaImgbb = await
-                fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+            let urlImagen = datosForm.imagen;
+            if (imagenFile) {
+                const apiKey = import.meta.env.VITE_API_KEY;
+                const formData = new FormData();
+                formData.append('image', imagenFile);
+                const respuestaImgbb = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
                     method: 'POST',
                     body: formData,
                 });
-            const datosImgbb = await respuestaImgbb.json();
-            if (datosImgbb.success) {
-                console.log("Imagen subida con éxito. URL:", datosImgbb.data.url);
-                // Unimos la URL de la imagen con el resto de los datos del formulario
-                const productoCompleto = {
-                    ...datosForm,
-                    // Agregamos la URL obtenida
-                    urlImagen: datosImgbb.data.url
-                };
-
-                // Por el momento hacemos un console.log
-                console.log('Enviando los siguientes datos COMPLETOS a la API:',
-                    productoCompleto);
-            } else {
-                throw new Error('La subida de la imagen a Imgbb falló.');
+                const datosImgbb = await respuestaImgbb.json();
+                if (!respuestaImgbb.ok || !datosImgbb.success) throw new Error('La subida de la imagen a Imgbb falló.');
+                urlImagen = datosImgbb.data.url;
             }
+                if (onProducto) {
+                    const guardado = await onProducto(datosForm, urlImagen);
+                    if (guardado) {
+                        setDatosForm({ id: '', nombre: '', precio: '', stock: '', imagen: '' });
+                        setImagenFile(null);
+                        formulario.reset();
+                    }
+                }
         } catch (error) {
             console.error("Error en el proceso de envío:", error);
             alert("Hubo un error al subir la imagen. Por favor, intentá de nuevo.");
+        } finally {
+            setEnviando(false);
         }
     };
 
@@ -85,6 +86,9 @@ function FormularioContainer() {
             manejarEnvio={manejarEnvio}
             // Pasamos la nueva función como prop
             manejarCambioImagen={manejarCambioImagen}
+            editando={Boolean(productoInicial)}
+            onCancelar={onCancelar}
+            enviando={enviando}
         />
 
     )

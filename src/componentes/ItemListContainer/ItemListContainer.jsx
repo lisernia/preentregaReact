@@ -3,8 +3,9 @@ import { ItemList } from "../ItemList/ItemList";
 import styles from "./ItemListContainer.module.css";
 import { useEffect, useState } from 'react';
 
-import { db } from "../../fileStore/config";
-import { collection, getDocs } from 'firebase/firestore';
+import { readProductos } from "../../services/productosServices"
+
+
 
 
 export function ItemListContainer({ json, Mensaje }) {
@@ -13,16 +14,11 @@ export function ItemListContainer({ json, Mensaje }) {
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
-        const productosDB = collection(db, "productos");
 
-        getDocs(productosDB).then((resp) => {
-            setProductos(
-                resp.docs.map((doc) => {
-                    return { ...doc.data(), id: doc.id }
-                })
-            );
-        })
-
+        readProductos()
+            .then((datos) => {
+                setProductos(datos);
+            })
             .catch((error) => {
                 setError(error.message);
             })
