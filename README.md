@@ -65,6 +65,10 @@ Para dar acceso a Gestión a una cuenta:
 
 Las reglas se publican en Firebase Console: agregar `firestore.rules` al proyecto local no las publica automáticamente. Revisá las reglas actuales antes de reemplazarlas si Firebase se comparte con otras aplicaciones. Para quitar el acceso a un administrador, eliminá su documento desde la consola de Firebase.
 
+### Equipo
+
+La página Nosotros lee la colección `equipo` de Firestore. Creá un documento por integrante desde Firebase Console con los campos de texto `nombre`, `email`, `puesto`, `foto` y `descripcion`. Los datos de ejemplo están en `public/data/equipo.json`; las fotos locales indicadas allí se encuentran en `public/images`. Publicá la versión actualizada de `firestore.rules` para permitir la lectura del equipo.
+
 ### ImgBB
 
 Para habilitar la subida de imágenes del formulario, creá un archivo `.env` en la raíz:

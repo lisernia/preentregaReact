@@ -17,6 +17,11 @@ service cloud.firestore {
       allow write: if esAdministrador();
     }
 
+    match /equipo/{integrante} {
+      allow read: if true;
+      allow write: if esAdministrador();
+    }
+
     match /cupones/{cupon} {
       allow read, write: if esAdministrador();
     }

@@ -4,7 +4,7 @@
     "nombre": "Valentina Fernández",
     "email": "vfernandez@gmail.com",
     "puesto": "Jefa de cocina",
-    "foto": "/images/valentina.jpg",
+    "foto": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=faces",
     "descripcion": "Organiza el menú y coordina la preparación de cada plato con el sabor de la comida casera."
   },
   {
@@ -12,7 +12,7 @@
     "nombre": "Martín Bianchi",
     "email": "mbianchi@gmail.com",
     "puesto": "Cocinero",
-    "foto": "/images/martin.jpg",
+    "foto": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=faces",
     "descripcion": "Prepara nuestros platos salados y cuida cada detalle para que disfrutes de una comida rica y abundante."
   },
   {
@@ -20,7 +20,7 @@
     "nombre": "Sofía Martínez",
     "email": "smartinez@gmail.com",
     "puesto": "Pastelera",
-    "foto": "/images/sofia.jpg",
+    "foto": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=faces",
     "descripcion": "Prepara postres y dulces caseros para darle un cierre especial a cada comida."
   },
   {
@@ -28,7 +28,7 @@
     "nombre": "Lucas González",
     "email": "lgonzalez@gmail.com",
     "puesto": "Ayudante de cocina",
-    "foto": "/images/lucas.jpg",
+    "foto": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=faces",
     "descripcion": "Prepara los ingredientes y acompaña al equipo en la elaboración y presentación de cada pedido."
   }
 ]
