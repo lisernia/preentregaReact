@@ -1,0 +1,9 @@
+.contenedor { max-width: 460px; margin: 20px auto; padding: 32px; border: 1px solid var(--borde); border-radius: 16px; background: var(--superficie); }
+.contenedor > p { margin-top: 14px; color: var(--texto-suave); }
+.formulario { display: grid; gap: 8px; margin-top: 24px; }
+.formulario label { font-weight: 600; }
+.formulario input { width: 100%; padding: 11px; margin-bottom: 10px; border: 1px solid var(--borde); border-radius: 8px; }
+.formulario button { margin-top: 8px; padding: 12px; border: 0; border-radius: 8px; background: var(--primario); color: white; font-weight: 600; }
+.formulario button:hover { background: var(--primario-hover); }
+.error { color: #a22232; }
+@media (max-width: 480px) { .contenedor { padding: 22px; } }

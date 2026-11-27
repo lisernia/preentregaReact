@@ -1,4 +1,4 @@
-﻿import './App.css';
+import './App.css';
 import { Layout } from './layout/Layout';
 import { ItemListContainer } from './componentes/ItemListContainer/ItemListContainer';
 import FormularioContainer from './componentes/FormularioContainer/FormularioContainer';
@@ -7,6 +7,8 @@ import { EquipoContainer } from './componentes/Equipo/EquipoContainer/EquipoCont
 import ItemDetalle from './componentes/ItemDetalle/ItemDetalle';
 import Cart from './componentes/Cart/Cart';
 import Gestion from './componentes/Gestion/Gestion';
+import Autenticacion from './componentes/Autenticacion/Autenticacion';
+import RutaProtegida from './componentes/Autenticacion/RutaProtegida';
 
 function App() {
   return (
@@ -42,7 +44,11 @@ function App() {
         <Route path="/nosotros" element={<EquipoContainer
 
           Mensaje={"Nuestro Equipo"} />} />
-        <Route path="/gestion" element={<Gestion/>} />
+        <Route path="/login" element={<Autenticacion key="login" />} />
+        <Route path="/registro" element={<Autenticacion key="registro" registro />} />
+        <Route element={<RutaProtegida />}>
+          <Route path="/gestion" element={<Gestion />} />
+        </Route>
 
         <Route path="/productos/:id" element={<ItemDetalle />} />
 

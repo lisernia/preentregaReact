@@ -1,4 +1,4 @@
-﻿.header { background: var(--fondo); color: var(--texto); padding: 22px max(24px,calc((100vw - 1132px)/2)); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid var(--borde); }
+.header { background: var(--fondo); color: var(--texto); padding: 22px max(24px,calc((100vw - 1132px)/2)); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid var(--borde); }
 .brand { color: var(--primario); font-family: Georgia, serif; font-size: 1.6rem; font-weight: 700; text-decoration: none; }
 .links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .links a { display: block; min-height: 44px; padding: 10px 14px; border-radius: 999px; color: var(--texto); font-size: .9rem; font-weight: 600; text-decoration: none; }
@@ -26,3 +26,6 @@
 .links .carrito:hover { background: var(--rosa); }
 @media(max-width:600px) { .header { flex-direction: column; gap: 12px; text-align: center; } .links { justify-content: center; } .links a { padding-inline: 10px; } }
 
+
+.sesion { min-height: 44px; padding: 10px 14px; border: 0; border-radius: 999px; background: transparent; color: var(--texto); font-size: .9rem; font-weight: 600; }
+.sesion:hover { background: var(--fondo-suave); color: var(--primario); }

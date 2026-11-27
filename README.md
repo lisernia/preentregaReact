@@ -52,6 +52,12 @@ Cada documento representa un producto. Su ID se utiliza como identificador en el
 
 El catálogo necesita permisos de lectura en las reglas de Firestore del proyecto utilizado.
 
+### Autenticación
+
+En Firebase Console, abrí **Authentication → Sign-in method** y habilitá el proveedor **Correo electrónico/contraseña**. Desde `/registro` se puede crear una cuenta y desde `/login` iniciar sesión. La ruta `/gestion` requiere una sesión activa y, al cerrar sesión, vuelve a solicitar el ingreso. Creá una cuenta de prueba para compartir sus credenciales con el docente de forma privada.
+
+La protección de la ruta controla la interfaz, pero no reemplaza las reglas de seguridad de Firestore. Configurá las reglas en Firebase Console para impedir escrituras no autorizadas. Actualmente cualquier usuario registrado puede acceder a Gestión: todavía no hay roles de administrador ni reglas de Firestore incluidas en este proyecto. Si solo una cuenta debe administrar los datos, hay que implementar y verificar la autorización de administrador tanto en la aplicación como en las reglas de Firestore.
+
 ### ImgBB
 
 Para habilitar la subida de imágenes del formulario, creá un archivo `.env` en la raíz:
@@ -72,7 +78,9 @@ Las variables con prefijo `VITE_` forman parte del código del navegador; no deb
 | `/productos` | Catálogo de comida |
 | `/productos/:id` | Detalle de un producto |
 | `/nosotros` | Presentación del equipo |
-| `/alta` | Formulario de producto |
+| `/gestion` | Gestión de productos (requiere sesión) |
+| `/login` | Inicio de sesión |
+| `/registro` | Creación de cuenta |
 | `/carrito` | Artículos seleccionados y total |
 
 ## Estructura del proyecto
