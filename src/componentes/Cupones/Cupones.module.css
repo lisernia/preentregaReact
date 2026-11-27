@@ -1,0 +1,13 @@
+.seccion { margin-top: 64px; padding: 28px; border: 1px solid var(--borde); border-radius: 16px; background: var(--superficie); }
+.seccion h2 { margin-bottom: 8px; }
+.seccion h3 { margin: 28px 0 12px; }
+.formulario { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; margin: 24px 0 16px; }
+.formulario div { flex: 1 1 180px; }
+.formulario label { display: block; font-weight: 600; margin-bottom: 6px; }
+.formulario input { width: 100%; padding: 10px; border: 1px solid var(--borde); border-radius: 8px; }
+.seccion button { padding: 10px 16px; border: 0; border-radius: 8px; background: var(--primario); color: white; }
+.seccion button:hover { background: var(--primario-hover); }
+.lista { list-style: none; margin: 0; padding: 0; }
+.lista li { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--borde); }
+.error { color: #a22232; }
+@media (max-width: 480px) { .seccion { padding: 20px; } }

@@ -4,6 +4,7 @@ import FormularioContainer from '../FormularioContainer/FormularioContainer';
 import { createProducto, readProductos, updateProducto, deleteProducto } from '../../services/productosServices';
 import ListadoProductos from '../ListadoProductos/ListadoProductos';
 import styles from './Gestion.module.css';
+import Cupones from '../Cupones/Cupones';
 
 const Gestion = () => {
     const [productos, setProductos] = useState([]);
@@ -86,6 +87,7 @@ const Gestion = () => {
             {error && <p role="alert">{error}</p>}
             {!cargando && !error && productos.length === 0 && <p>No hay productos disponibles.</p>}
             {!cargando && !error && <ListadoProductos productos={productos} onEditar={setProductoEditado} onEliminar={manejarEliminar} procesando={procesando} />}
+            <Cupones />
         </main>
     );
 };
