@@ -56,7 +56,14 @@ El catálogo necesita permisos de lectura en las reglas de Firestore del proyect
 
 En Firebase Console, abrí **Authentication → Sign-in method** y habilitá el proveedor **Correo electrónico/contraseña**. Desde `/registro` se puede crear una cuenta y desde `/login` iniciar sesión. La ruta `/gestion` requiere una sesión activa y, al cerrar sesión, vuelve a solicitar el ingreso. Creá una cuenta de prueba para compartir sus credenciales con el docente de forma privada.
 
-La protección de la ruta controla la interfaz, pero no reemplaza las reglas de seguridad de Firestore. Configurá las reglas en Firebase Console para impedir escrituras no autorizadas. Actualmente cualquier usuario registrado puede acceder a Gestión: todavía no hay roles de administrador ni reglas de Firestore incluidas en este proyecto. Si solo una cuenta debe administrar los datos, hay que implementar y verificar la autorización de administrador tanto en la aplicación como en las reglas de Firestore.
+Para dar acceso a Gestión a una cuenta:
+
+1. En Firebase Console → **Authentication → Users**, copiá el UID de la cuenta registrada.
+2. En **Firestore Database → Datos**, creá la colección `administradores` y un documento cuyo ID sea exactamente ese UID. Agregá, por ejemplo, el campo `activo` de tipo booleano con valor `true`. La autorización se basa en la existencia del documento.
+3. En **Firestore Database → Reglas**, revisá y publicá el contenido de `firestore.rules` de este repositorio. Estas reglas permiten leer productos públicamente y reservan sus escrituras y el acceso a cupones a administradores. También permiten que cada cuenta compruebe solo su propio documento de administrador. Las demás colecciones quedan sin acceso desde la aplicación salvo que se agreguen reglas explícitas.
+4. Iniciá sesión con esa cuenta y entrá a `/gestion`. Una cuenta sin documento de administrador verá un mensaje de acceso restringido. Comprobá también que una cuenta sin permisos no pueda escribir productos directamente en Firestore.
+
+Las reglas se publican en Firebase Console: agregar `firestore.rules` al proyecto local no las publica automáticamente. Revisá las reglas actuales antes de reemplazarlas si Firebase se comparte con otras aplicaciones. Para quitar el acceso a un administrador, eliminá su documento desde la consola de Firebase.
 
 ### ImgBB
 
@@ -78,7 +85,7 @@ Las variables con prefijo `VITE_` forman parte del código del navegador; no deb
 | `/productos` | Catálogo de comida |
 | `/productos/:id` | Detalle de un producto |
 | `/nosotros` | Presentación del equipo |
-| `/gestion` | Gestión de productos (requiere sesión) |
+| `/gestion` | Gestión de productos (requiere cuenta administradora) |
 | `/login` | Inicio de sesión |
 | `/registro` | Creación de cuenta |
 | `/carrito` | Artículos seleccionados y total |

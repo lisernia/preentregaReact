@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function esAdministrador() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/administradores/$(request.auth.uid));
+    }
+
+    // Cada usuario solo puede consultar su propio permiso; no puede modificarlo.
+    match /administradores/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+
+    match /productos/{producto} {
+      allow read: if true;
+      allow write: if esAdministrador();
+    }
+
+    match /cupones/{cupon} {
+      allow read, write: if esAdministrador();
+    }
+  }
+}
