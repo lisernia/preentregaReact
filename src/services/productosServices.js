@@ -1,5 +1,5 @@
 import { db } from "../fileStore/config";
-import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc, query, where } from 'firebase/firestore';
 
 
 const productosDB = collection(db, "productos");
@@ -43,3 +43,7 @@ export const readProductos = () => {
 
 
 
+
+// Productos marcados como oferta en Firestore.
+export const readProductosEnOferta = () => getDocs(query(productosDB, where("oferta", "==", true)))
+    .then((resultado) => resultado.docs.map((producto) => ({ ...producto.data(), id: producto.id })));

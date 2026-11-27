@@ -10,19 +10,20 @@ function FormularioContainer({ onProducto, productoInicial, onCancelar }) {
             nombre: productoInicial?.nombre ?? '',
             precio: productoInicial?.precio ?? '',
             stock: productoInicial?.stock ?? '',
-            imagen: productoInicial?.imagen ?? ''
+            imagen: productoInicial?.imagen ?? '',
+            oferta: productoInicial?.oferta === true
         });
 
-    // 1. Nuevo estado para el archivo de imagen
     const [imagenFile, setImagenFile] = useState(null);
     const [enviando, setEnviando] = useState(false);
+    const [error, setError] = useState('');
 
 
     const manejarChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
         setDatosForm({
             ...datosForm,
-            [name]: value
+            [name]: type === 'checkbox' ? checked : value
         });
 
 
@@ -31,15 +32,32 @@ function FormularioContainer({ onProducto, productoInicial, onCancelar }) {
     const manejarEnvio = async (evento) => {
         evento.preventDefault();
         const formulario = evento.currentTarget;
-        // Validamos que el usuario haya seleccionado una imagen
-        if (!imagenFile && !productoInicial) {
-            alert("Por favor, selecciona una imagen para el producto.");
+        setError('');
+        const nombre = datosForm.nombre.trim();
+        const imagen = datosForm.imagen.trim();
+        if (!nombre) {
+            setError('Ingresá el nombre del producto.');
             return;
         }
-        // --- Lógica para subir la imagen a Imgbb ---
+        if (!Number.isFinite(Number(datosForm.precio)) || Number(datosForm.precio) <= 0) {
+            setError('El precio debe ser mayor que cero.');
+            return;
+        }
+        if (!Number.isInteger(Number(datosForm.stock)) || Number(datosForm.stock) < 0) {
+            setError('El stock debe ser un número entero mayor o igual a cero.');
+            return;
+        }
+        if (!imagenFile && !imagen) {
+            setError('Ingresá una URL o ruta de imagen, o seleccioná un archivo.');
+            return;
+        }
+        if (!imagenFile && !/^(https?:\/\/[^\s]+|\/(?!\/)[^\s]+|\.\.?\/[^\s]+)$/i.test(imagen)) {
+            setError('Ingresá una URL válida que comience con http:// o https://, o una ruta local.');
+            return;
+        }
         setEnviando(true);
         try {
-            let urlImagen = datosForm.imagen;
+            let urlImagen = imagen;
             if (imagenFile) {
                 const apiKey = import.meta.env.VITE_API_KEY;
                 const formData = new FormData();
@@ -53,16 +71,16 @@ function FormularioContainer({ onProducto, productoInicial, onCancelar }) {
                 urlImagen = datosImgbb.data.url;
             }
                 if (onProducto) {
-                    const guardado = await onProducto(datosForm, urlImagen);
+                    const guardado = await onProducto({ ...datosForm, nombre }, urlImagen);
                     if (guardado) {
-                        setDatosForm({ id: '', nombre: '', precio: '', stock: '', imagen: '' });
+                        setDatosForm({ id: '', nombre: '', precio: '', stock: '', imagen: '', oferta: false });
                         setImagenFile(null);
                         formulario.reset();
                     }
                 }
         } catch (error) {
             console.error("Error en el proceso de envío:", error);
-            alert("Hubo un error al subir la imagen. Por favor, intentá de nuevo.");
+            setError("No se pudo subir la imagen. Revisá la configuración de ImgBB o usá una URL.");
         } finally {
             setEnviando(false);
         }
@@ -72,10 +90,6 @@ function FormularioContainer({ onProducto, productoInicial, onCancelar }) {
 
 
 
-    const manejarCambio = (evento) => {
-        // Se mantiene igual
-    };
-    // 2. Nueva función para manejar el cambio del input de tipo "file"
     const manejarCambioImagen = (evento) => {
         setImagenFile(evento.target.files[0]);
     };
@@ -89,6 +103,7 @@ function FormularioContainer({ onProducto, productoInicial, onCancelar }) {
             editando={Boolean(productoInicial)}
             onCancelar={onCancelar}
             enviando={enviando}
+            error={error}
         />
 
     )

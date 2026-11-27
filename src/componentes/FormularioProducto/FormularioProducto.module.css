@@ -107,3 +107,9 @@
     .fila { grid-template-columns: 1fr; gap: 24px; }
     .formulario { border-radius: 16px; }
 }
+
+.oferta { display: flex; align-items: center; gap: 10px; }
+.oferta input { width: auto; min-width: auto; }
+.oferta label { margin: 0; }
+
+.error { color: #a22232; }

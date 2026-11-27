@@ -28,7 +28,7 @@ function App() {
               </div>
             </section>
             <section id="nuestra-comida" className="menu">
-              <ItemListContainer json="/data/productos.json" Mensaje="Nuestra comida" />
+              <ItemListContainer soloOfertas Mensaje="Productos en oferta" />
             </section>
             <section id="nosotros" className="menu">
               <EquipoContainer Mensaje="Nuestro equipo" />
@@ -38,9 +38,7 @@ function App() {
             </section>
           </>
         } />
-        <Route path="/productos" element={<ItemListContainer
-          json="/data/productos.json"
-          Mensaje={"Productos destacados"} />} />
+        <Route path="/productos" element={<ItemListContainer Mensaje="Nuestros productos" />} />
         <Route path="/nosotros" element={<EquipoContainer
 
           Mensaje={"Nuestro Equipo"} />} />
